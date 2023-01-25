@@ -1,0 +1,52 @@
+<!DOCTYPE  html>
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hashiwokakero Solver</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+  <h1>HASHIWOKAKERO SOLVER</h1> 
+  <header>Upload your hashiwokakero grid as a .jpg</header>
+  <div class="drag-area">
+    <form method="POST" action="" enctype="multipart/form-data">
+      <img class="grid_image" id="preview_img"src="./../static/asset/placeholder.jpg" alt="your grid">
+
+      <p><label for="file_input" id="input_label"class="upload-button">Choose your grid</label></p>
+      <p><input type="file" id="file_input" name="file" onchange="loadFile(event)"></p>
+
+      <p><label for="summit_input" id="summit_label"class="upload-button hidden">Submit</label></p>
+      <p><input type="submit" id="summit_input" value="Submit" onchange="displayLoader(event)"></p>
+    </form>
+    <p>{{result}}</p>
+  </div>
+
+  <script src="../static/script.js"></script>
+  <script>
+    var loadFile = function(event) {
+        var output = document.getElementById('preview_img');
+        var input = document.getElementById('input_label');
+        var summit = document.getElementById('summit_label');
+        
+        summit.classList.remove('hidden');
+        input.classList.add('hidden');
+        output.src = URL.createObjectURL(event.target.files[0]);
+
+        output.onload = function() {
+          URL.revokeObjectURL(output.src) // free memory
+        }
+      };
+    var displayLoader = function(event) {
+        var output = document.getElementById('preview_img');        
+      
+        output.src = "./../static/asset/loader.svg"
+        output.onload = function() {
+        URL.revokeObjectURL(output.src) // free memory
+        }
+      };
+  </script>
+
+</body>
+</html>

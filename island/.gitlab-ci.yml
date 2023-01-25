@@ -1,0 +1,17 @@
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+    - echo $DOCKER_HUB_PWD | docker login --username hashiwokakero --password-stdin
+    - docker build --network host -t hashiwokakero/island:latest .
+    - docker push hashiwokakero/island:latest
+
+deploy:
+  stage : deploy
+  script:
+    - docker rm -f $(docker ps -aq --filter name=island) || true
+    - docker system prune -f
+    - docker run -d --name island -p 50002:5000 hashiwokakero/island:latest

@@ -1,0 +1,6 @@
+Flask
+numpy
+opencv-python
+pybase64
+imutils
+requests

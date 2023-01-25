@@ -1,0 +1,7 @@
+Tensorflow==2.11.0
+Keras==2.11.0
+opencv-python==4.6.0.66
+requests==2.28.1
+numpy==1.21.5
+flask
+Pillow
